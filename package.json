@@ -1,16 +1,30 @@
 {
-  "name": "netlify-n-faunadb-sample",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "dependencies": {},
-  "devDependencies": {
-    "fauna-shell": "^0.11.1",
-    "netlify-cli": "^2.49.0"
-  },
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "author": "Kentaro Shimatani <peccul@gmail.com>",
-  "license": "MIT"
+    "name": "netlify-n-faunadb-sample",
+    "description": "TODO",
+    "version": "0.0.1",
+    "author": "Kentaro Shimatani <peccul@gmail.com>",
+    "license": "MIT",
+    "scripts": {
+	"dev": "sapper dev",
+	"build": "sapper build",
+	"export": "sapper export",
+	"start": "node __sapper__/build",
+	"cy:run": "cypress run",
+	"cy:open": "cypress open",
+	"test": "run-p --race dev cy:run"
+    },
+    "dependencies": {
+	"compression": "^1.7.1",
+	"polka": "next",
+	"sirv": "^0.4.0"
+    },
+    "devDependencies": {
+	"fauna-shell": "^0.11.1",
+	"netlify-cli": "^2.49.0",
+	"npm-run-all": "^4.1.5",
+	"sapper": "^0.27.0",
+	"svelte": "^3.0.0",
+	"svelte-loader": "^2.9.0",
+	"webpack": "^4.7.0"
+    }
 }
