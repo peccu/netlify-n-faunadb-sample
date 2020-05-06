@@ -1,0 +1,16 @@
+{
+  "name": "netlify-n-faunadb-sample",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {},
+  "devDependencies": {
+    "fauna-shell": "^0.11.1",
+    "netlify-cli": "^2.49.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Kentaro Shimatani <peccul@gmail.com>",
+  "license": "MIT"
+}
