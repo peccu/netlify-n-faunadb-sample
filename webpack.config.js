@@ -27,7 +27,18 @@ module.exports = {
 							hotReload: false // pending https://github.com/sveltejs/svelte/issues/2377
 						}
 					}
-				}
+				},
+                          {
+                            test: /\.s[ac]ss$/i,
+                            use: [
+                              // Creates `style` nodes from JS strings
+                              'style-loader',
+                              // Translates CSS into CommonJS
+                              'css-loader',
+                              // Compiles Sass to CSS
+                              'sass-loader',
+                            ],
+                          }
 			]
 		},
 		mode,
@@ -60,7 +71,18 @@ module.exports = {
 							dev
 						}
 					}
-				}
+				},
+                          {
+                            test: /\.s[ac]ss$/i,
+                            use: [
+                              // Creates `style` nodes from JS strings
+                              'style-loader',
+                              // Translates CSS into CommonJS
+                              'css-loader',
+                              // Compiles Sass to CSS
+                              'sass-loader',
+                            ],
+                          }
 			]
 		},
 		mode: process.env.NODE_ENV,
