@@ -14,9 +14,10 @@ const fire = () => {
 import netlifyIdentity from 'netlify-identity-widget'
 (typeof window == 'object') && netlifyIdentity.init()
 
-import { user, redirectURL } from './store.js'
+import { user, redirectURL, message } from './store.js'
 
 export const handleUserAction = async (action, redirect) => {
+  message.clearMessage()
   if(action === 'login' || action === 'signup'){
     netlifyIdentity.open(action)
     netlifyIdentity.on('login', async u => {
@@ -39,4 +40,5 @@ export const handlePrivateRoute = async (segment) => {
   redirectURL.setRedirectURL(href)
   await goto('/', { replaceState: true })
   fire()
+  message.setMessage('Please log in or sign up to view this page')
 }

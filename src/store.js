@@ -45,5 +45,19 @@ const createRedirectURL = () => {
   }
 }
 
+const createMessage = () => {
+  const { subscribe, set } = writable('')
+  return {
+    subscribe,
+    setMessage(message){
+      set(message)
+    },
+    clearMessage(){
+      set('')
+    },
+  }
+}
+
 export const user = createUser()
 export const redirectURL = createRedirectURL()
+export const message = createMessage()

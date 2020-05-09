@@ -3,7 +3,7 @@
 
  import { handleUserAction, handlePrivateRoute } from '../auth.js'
 
- import { user, redirectURL } from '../store.js'
+ import { user, redirectURL, message } from '../store.js'
  $: isLoggedIn = !!$user
  $: username = $user !== null ? $user.username : ' there!'
 </script>
@@ -64,6 +64,10 @@
     <li><a rel=prefetch aria-current='{segment === "blog" ? "page" : undefined}' href='blog'>blog</a></li>
   </ul>
 </nav>
+
+{#if $message != ''}
+  {$message}
+{/if}
 
 {#if isLoggedIn}
   <div class="center">
