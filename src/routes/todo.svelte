@@ -25,7 +25,7 @@
    }
 
    console.log('all todos', _todos)
-   todos = _todos
+   todos = api.mapTodos(_todos)
  }).catch(err => {
    console.log('something went wrong', err)
  })
@@ -56,6 +56,6 @@
 </ul>
 <ul>
   {#each todos as todo}
-    {todo}
+    <li>{todo.title} - {todo.completed}, {todo.time}</li>
   {/each}
 </ul>

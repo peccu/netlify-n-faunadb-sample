@@ -16,6 +16,15 @@ const generateHeaders = () => {
   return Promise.resolve(headers);
 }
 
+// many drops
+// cf. https://www.smashingmagazine.com/2019/10/bookmarking-application-faunadb-netlify-11ty/
+const mapTodos = (data) => {
+  return data.map(todo => {
+    const dateTime = new Date(todo.ts / 1000);
+    return { time: dateTime, ...todo.data }
+  })
+}
+
 const call = (endpoint, params) => {
   if(typeof window != 'object'){
     return new Promise(()=>{})
@@ -69,6 +78,7 @@ const batchDeleteTodo = (todoIds) => {
 }
 
 export default {
+  mapTodos,
   create: create,
   readAll: readAll,
   update: update,
