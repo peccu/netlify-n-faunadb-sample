@@ -21,20 +21,20 @@ function createUser() {
       }
       set(currentUser)
     },
-    logout() {
+    logout(){
       set(null)
     },
   }
 }
 
-function createRedirectURL() {
+const createRedirectURL = () => {
   const { subscribe, set } = writable('')
   return {
     subscribe,
-    setRedirectURL(url) {
+    setRedirectURL(url){
       set(url)
     },
-    clearRedirectURL() {
+    clearRedirectURL(){
       set('')
     },
   }
