@@ -1,25 +1,30 @@
 // https://github.com/babycourageous/netlify-identity-demo-svelte/blob/master/src/store.js
 import { writable } from 'svelte/store'
 
-function createUser() {
-  let u = null
+const nameFromUser = (user) => (user.user_metadata && user.user_metadata.full_name !== '')
+        ? user.user_metadata.full_name
+      : user.email
+
+const makeUser = (user) => {
+  return {
+    username: nameFromUser(user),
+    email: user.email,
+    access_token: user.token.access_token,
+    expires_at: user.token.expires_at,
+    refresh_token: user.token.refresh_token,
+    token_type: user.token.token_type,
+  }
+}
+
+const createUser = () => {
+  let localUser = (typeof window == 'object') ? JSON.parse(localStorage.getItem('gotrue.user')) : false
+  let u = localUser ? makeUser(localUser) : null
   const { subscribe, set } = writable(u)
 
   return {
     subscribe,
-    login(user) {
-      let name = (user.user_metadata && user.user_metadata.full_name !== '')
-          ? user.user_metadata.full_name
-          : user.email
-      const currentUser = {
-        username: name,
-        email: user.email,
-        access_token: user.token.access_token,
-        expires_at: user.token.expires_at,
-        refresh_token: user.token.refresh_token,
-        token_type: user.token.token_type,
-      }
-      set(currentUser)
+    login(user){
+      set(makeUser(user))
     },
     logout(){
       set(null)
