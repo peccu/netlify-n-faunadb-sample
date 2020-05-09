@@ -87,6 +87,6 @@
   </div>
 {/if}
 
-{#if !isLoggedIn && segment === "blog" }
+{#if !isLoggedIn && (segment === "blog" || segment === "todo" ) }
   {handlePrivateRoute(segment)}
 {/if}
