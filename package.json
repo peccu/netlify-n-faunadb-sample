@@ -5,7 +5,9 @@
   "author": "Kentaro Shimatani <peccul@gmail.com>",
   "license": "MIT",
   "scripts": {
+    "bootstrap": "netlify dev:exec node ./scripts/bootstrap-fauna-database.js",
     "dev": "sapper dev",
+    "prebuild": "echo 'setup faunaDB' && npm run bootstrap",
     "build": "sapper build",
     "export": "sapper export",
     "start": "node __sapper__/build",
