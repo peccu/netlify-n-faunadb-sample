@@ -1,7 +1,9 @@
 import { goto } from '@sapper/app';
 
 import Swal from 'sweetalert2'
-(typeof window == 'object') && import('sweetalert2/src/sweetalert2.scss')
+if(typeof window == 'object'){
+  import('sweetalert2/src/sweetalert2.scss')
+}
 const fire = () => {
   Swal.fire({
     title: 'You are not authenticated',
@@ -12,11 +14,17 @@ const fire = () => {
 }
 
 import netlifyIdentity from 'netlify-identity-widget'
-(typeof window == 'object') && netlifyIdentity.init()
+if(typeof window == 'object'){
+  netlifyIdentity.init()
+}
 
 import { user, redirectURL, message } from './store.js'
 
 export const handleUserAction = async (action, redirect) => {
+  // goto cant use in non client
+  if(typeof window != 'object'){
+    return
+  }
   message.clearMessage()
   if(action === 'login' || action === 'signup'){
     netlifyIdentity.open(action)
@@ -36,6 +44,10 @@ export const handleUserAction = async (action, redirect) => {
 }
 
 export const handlePrivateRoute = async (segment) => {
+  // goto cant use in non client
+  if(typeof window != 'object'){
+    return
+  }
   let href = (typeof window == 'object') ? location.href : ''
   redirectURL.setRedirectURL(href)
   await goto('/', { replaceState: true })
