@@ -26,6 +26,8 @@
 
    console.log('all todos', _todos)
    todos = _todos
+ }).catch(err => {
+   console.log('something went wrong', err)
  })
 
 </script>

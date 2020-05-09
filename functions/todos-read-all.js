@@ -5,10 +5,19 @@ const q = faunadb.query
 
 exports.handler = (event, context) => {
   console.log('Function `todo-read-all` invoked')
+  const claims = context.clientContext && context.clientContext.user;
+  if(!claims){
+    console.log('no auth', context.clientContext)
+    return {
+      statusCode: 401,
+      body: 'You must be signed in to call this function'
+    };
+  }
+  console.log('claims', claims)
   /* configure faunaDB Client with our secret */
   const client = new faunadb.Client({
     secret: process.env.FAUNADB_SERVER_SECRET
-  }) 
+  })
   return client.query(q.Paginate(q.Match(q.Ref('indexes/all_todos'))))
     .then((response) => {
       const todoRefs = response.data
