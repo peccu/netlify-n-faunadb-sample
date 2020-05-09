@@ -87,5 +87,5 @@
 {/if}
 
 {#if !isLoggedIn && segment === "blog" }
-  <!--{handlePrivateRoute(segment)}-->
+  {handlePrivateRoute(segment)}
 {/if}
