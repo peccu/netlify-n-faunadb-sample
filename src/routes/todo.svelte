@@ -1,13 +1,4 @@
-<script context="module">
- export function preload({ params, query }) {
-   return this.fetch(`blog.json`).then(r => r.json()).then(posts => {
-     return { posts };
-   });
- }
-</script>
-
 <script>
- export let posts;
  import api from '../api.js'
  if(typeof window == 'object'){
    window.api = api
